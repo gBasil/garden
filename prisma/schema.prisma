@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+	provider = "prisma-client-js"
+}
+
+datasource db {
+	provider	= "sqlite"
+	url			= "file:../archive/dev.db"
+}
+
+model Snapshot {
+	id			String		@id @default(uuid()) @unique
+	ready		Boolean
+	createdAt	DateTime	@default(now())
+	// Metadata
+	title		String
+	url			String
+	favicon		Boolean?
+	files		Int?
+	size		Int?
+	path		String?		// The default path of the file, relative to the hostname folder
+}
