@@ -14,6 +14,7 @@
 
 # production
 /build
+/static-server/index.js
 
 # misc
 .DS_Store
