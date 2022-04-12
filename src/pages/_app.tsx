@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { CssBaseline, GeistProvider } from '@geist-ui/core';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 					<Hydrate state={pageProps.dehydratedState}>
 						<Component {...pageProps} />
 					</Hydrate>
+					<ReactQueryDevtools initialIsOpen={false} />
 				</QueryClientProvider>
 			</GeistProvider>
 		</>
@@ -28,3 +30,4 @@ const App = ({ Component, pageProps }: AppProps) => {
 };
 
 export default App;
+export { queryClient };
