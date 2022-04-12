@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import { withValidation } from 'next-validations';
-import { prisma } from '../../helpers/db';
+import { prisma } from '../../../helpers/db';
 import { join } from 'path';
 import { existsSync, rmSync } from 'fs';
 

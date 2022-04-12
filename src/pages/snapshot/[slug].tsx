@@ -34,7 +34,7 @@ const Site: NextPage = (props: any) => {
 
 	const deleteSnapshot = () => {
 		axios
-			.post('/api/delete', {
+			.post('/api/action/delete', {
 				uuid: snapshot.id,
 			})
 			.then(({ data }) => {
