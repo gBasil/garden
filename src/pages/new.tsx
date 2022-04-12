@@ -28,7 +28,7 @@ const New: NextPage = () => {
 		setLoading(true);
 		axios
 			.post('/api/action/snapshot', data)
-			.then(({ data }) => router.push(`/snapshot/${data.uuid}`))
+			.then(({ data }) => router.push(`/snapshot/${data.id}`))
 			.catch((err) => {
 				setLoading(false);
 

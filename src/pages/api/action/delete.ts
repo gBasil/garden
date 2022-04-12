@@ -6,7 +6,7 @@ import { join } from 'path';
 import { existsSync, rmSync } from 'fs';
 
 const schema = z.object({
-	uuid: z.string().uuid(),
+	id: z.string().uuid(),
 });
 
 const validate = withValidation({
@@ -19,11 +19,11 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 	prisma.snapshot
 		.delete({
 			where: {
-				id: req.body.uuid,
+				id: req.body.id,
 			},
 		})
 		.then(() => {
-			const folder = join(process.cwd(), 'snapshots', req.body.uuid);
+			const folder = join(process.cwd(), 'snapshots', req.body.id);
 			if (existsSync(folder)) rmSync(folder, { recursive: true });
 
 			res.status(200).json({

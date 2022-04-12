@@ -5,7 +5,7 @@ import { prisma } from '../../../helpers/server/db';
 import { serialize } from 'superjson';
 
 const schema = z.object({
-	uuid: z.string().uuid(),
+	id: z.string().uuid(),
 });
 
 const validate = withValidation({
@@ -18,7 +18,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 	prisma.snapshot
 		.findFirst({
 			where: {
-				id: req.body.uuid,
+				id: req.body.id,
 			},
 		})
 		.then((data) => {

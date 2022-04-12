@@ -17,8 +17,8 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-// Setup cookie for viewing files and redirect to home from UUID
-app.get('/view/:uuid', setupCookies);
+// Setup cookie for viewing files and redirect to home from ID
+app.get('/view/:id', setupCookies);
 
 // Handle everything else. I don't know why I used middleware...
 app.use(

@@ -5,7 +5,7 @@ const setupCookies = async (req: Request, res: Response) => {
 	// TODO: Add check to prevent redundant database lookups
 	const snapshot = await prisma.snapshot.findFirst({
 		where: {
-			id: req.params.uuid,
+			id: req.params.id,
 		},
 	});
 
@@ -19,7 +19,7 @@ const setupCookies = async (req: Request, res: Response) => {
 	expires.setDate(expires.getDate() + 1);
 
 	// Cache the directory so we don't need lookups
-	res.cookie('snapshotUUID', req.params.uuid, {
+	res.cookie('snapshotID', req.params.id, {
 		path: '/',
 		expires,
 		httpOnly: true,

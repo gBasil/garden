@@ -24,7 +24,7 @@ const snapshotSite = async (
 
 	if (res && !res.headersSent)
 		res.status(200).json({
-			uuid: snapshot.id,
+			id: snapshot.id,
 		});
 
 	const getPath = (...path: string[]) =>
@@ -73,7 +73,7 @@ const snapshotSite = async (
 						getPath('screenshot.png'),
 						{
 							headers: {
-								cookie: `snapshotUUID=${snapshot.id}`,
+								cookie: `snapshotID=${snapshot.id}`,
 							},
 						}
 					);

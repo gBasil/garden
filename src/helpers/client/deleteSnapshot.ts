@@ -11,7 +11,7 @@ const deleteSnapshot = (
 ) => {
 	axios
 		.post('/api/action/delete', {
-			uuid: snapshot.id,
+			id: snapshot.id,
 		})
 		.then(({ data }) => {
 			setToast({
