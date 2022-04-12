@@ -2,8 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import { withValidation } from 'next-validations';
 import { prisma } from '../../../helpers/db';
-import { join } from 'path';
-import { existsSync, rmSync } from 'fs';
+import { serialize } from 'superjson';
 
 const schema = z.object({
 	uuid: z.string().uuid(),
@@ -17,23 +16,20 @@ const validate = withValidation({
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
 	prisma.snapshot
-		.delete({
+		.findFirst({
 			where: {
 				id: req.body.uuid,
 			},
 		})
-		.then(() => {
-			const folder = join(process.cwd(), 'snapshots', req.body.uuid);
-			if (existsSync(folder)) rmSync(folder, { recursive: true });
+		.then((data) => {
+			if (!data) throw new Error();
 
-			res.status(200).json({
-				message: 'Deleted successfully!',
-			});
+			res.status(200).json(serialize(data));
 		})
-		.catch((err) =>
+		.catch((err) => {
 			res.status(500).json({
-				message: 'An unknown error ocurred',
-			})
-		);
+				message: 'An error ocurred fetching snapshot status',
+			});
+		});
 };
 export default validate(handler);
