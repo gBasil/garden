@@ -32,7 +32,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 		})
 		.catch(() =>
 			res.status(500).json({
-				message: 'An unknown error ocurred',
+				message: 'An error ocurred when deleting the snapshot',
 			})
 		);
 };
