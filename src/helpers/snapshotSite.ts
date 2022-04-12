@@ -8,7 +8,7 @@ import recursive from 'recursive-readdir';
 import captureWebsite from 'capture-website';
 import config from './config';
 
-const archiveSite = async (
+const snapshotSite = async (
 	url: string,
 	title: string,
 	entireSite: boolean,
@@ -28,7 +28,7 @@ const archiveSite = async (
 		});
 
 	const getPath = (...path: string[]) =>
-		join(process.cwd(), `archive/${snapshot.id}`, ...path);
+		join(process.cwd(), `snapshots/${snapshot.id}`, ...path);
 
 	exec(
 		`wget --no-clobber --page-requisites --convert-links --restrict-file-names=windows --adjust-extension --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" ${
@@ -73,7 +73,7 @@ const archiveSite = async (
 						getPath('screenshot.png'),
 						{
 							headers: {
-								cookie: `archiveUUID=${snapshot.id}`,
+								cookie: `snapshotUUID=${snapshot.id}`,
 							},
 						}
 					);
@@ -95,4 +95,4 @@ const archiveSite = async (
 	);
 };
 
-export default archiveSite;
+export default snapshotSite;

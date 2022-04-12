@@ -24,10 +24,10 @@ const New: NextPage = () => {
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 
-	const archive = (data: any) => {
+	const snapshot = (data: any) => {
 		setLoading(true);
 		axios
-			.post('/api/archive', data)
+			.post('/api/snapshot', data)
 			.then(({ data }) => router.push(`/snapshot/${data.uuid}`))
 			.catch((err) => {
 				setLoading(false);
@@ -61,7 +61,7 @@ const New: NextPage = () => {
 		>
 			<Card className='m-auto w-96'>
 				<form
-					onSubmit={handleSubmit(archive)}
+					onSubmit={handleSubmit(snapshot)}
 					className='flex flex-col items-start gap-4'
 					onChange={() => clearErrors()}
 				>
@@ -95,7 +95,7 @@ const New: NextPage = () => {
 						name={'entireSite'}
 						defaultValue={false}
 					>
-						Archive entire site
+						Snapshot entire site
 					</FormCheckbox>
 
 					<Button
@@ -104,7 +104,7 @@ const New: NextPage = () => {
 						loading={loading}
 						htmlType='submit'
 					>
-						Archive
+						Snapshot
 					</Button>
 					{errors.server && (
 						<Text small type='error' my={0}>

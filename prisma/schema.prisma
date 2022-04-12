@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
 	provider	= "sqlite"
-	url			= "file:../archive/dev.db"
+	url			= "file:../snapshots/dev.db"
 }
 
 model Snapshot {

@@ -3,7 +3,7 @@ import { Snapshot } from '@prisma/client';
 import type { GetServerSideProps, NextPage } from 'next';
 import { deserialize, serialize } from 'superjson';
 import { SuperJSONResult } from 'superjson/dist/types';
-import ArchiveCard from '../components/ArchiveCard';
+import SnapshotCard from '../components/SnapshotCard';
 import Link from '../components/Link';
 import Page from '../components/Page';
 import { prisma } from '../helpers/db';
@@ -19,7 +19,7 @@ const Home: NextPage<Props> = (props) => {
 		<Page quote title='Home'>
 			<div className='flex w-full place-content-end'>
 				<Link href='/new'>
-					<Button>Archive Website</Button>
+					<Button>Snapshot Website</Button>
 				</Link>
 			</div>
 
@@ -27,7 +27,7 @@ const Home: NextPage<Props> = (props) => {
 
 			<Grid.Container gap={3}>
 				{snapshots.map((snapshot) => (
-					<ArchiveCard snapshot={snapshot} key={snapshot.id} />
+					<SnapshotCard snapshot={snapshot} key={snapshot.id} />
 				))}
 			</Grid.Container>
 		</Page>

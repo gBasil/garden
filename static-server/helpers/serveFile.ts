@@ -16,15 +16,15 @@ const fetchDir = async (id: string) => {
 	} else return dirCache[id];
 };
 
-const check = (req: Request) => req.cookies.archiveUUID;
+const check = (req: Request) => req.cookies.snapshotUUID;
 
 const handle = async (req: Request, res: Response) => {
 	const file = join(
 		process.cwd(),
-		'archive',
-		req.cookies.archiveUUID,
+		'snapshots',
+		req.cookies.snapshotUUID,
 		'files',
-		await fetchDir(req.cookies.archiveUUID),
+		await fetchDir(req.cookies.snapshotUUID),
 		req.path
 	);
 

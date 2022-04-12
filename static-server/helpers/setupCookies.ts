@@ -19,7 +19,7 @@ const setupCookies = async (req: Request, res: Response) => {
 	expires.setDate(expires.getDate() + 1);
 
 	// Cache the directory so we don't need lookups
-	res.cookie('archiveUUID', req.params.uuid, {
+	res.cookie('snapshotUUID', req.params.uuid, {
 		path: '/',
 		expires,
 		httpOnly: true,

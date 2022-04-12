@@ -1,14 +1,14 @@
 import { Card, Grid, Text } from '@geist-ui/core';
 import { Snapshot } from '@prisma/client';
 import Image from 'next/image';
-import Link from '../components/Link';
+import Link from './Link';
 import config from '../helpers/config';
 
-type ArchiveCardProps = {
+type SnapshotCardProps = {
 	snapshot: Snapshot;
 };
 
-const ArchiveCard = ({ snapshot }: ArchiveCardProps) => {
+const SnapshotCard = ({ snapshot }: SnapshotCardProps) => {
 	return (
 		<Grid xs={24} sm={12} md={8}>
 			<Link href={`/snapshot/${snapshot.id}`} className='w-full'>
@@ -17,7 +17,7 @@ const ArchiveCard = ({ snapshot }: ArchiveCardProps) => {
 						<div className='relative aspect-video w-full'>
 							<Image
 								src={`${config.static.url}/ext/${snapshot.id}/screenshot.png`}
-								alt='Preview of archived webpage'
+								alt='Preview of snapshotted webpage'
 								layout='fill'
 								objectFit='cover'
 								objectPosition='top center'
@@ -57,4 +57,4 @@ const ArchiveCard = ({ snapshot }: ArchiveCardProps) => {
 	);
 };
 
-export default ArchiveCard;
+export default SnapshotCard;

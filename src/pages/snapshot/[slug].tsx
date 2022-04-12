@@ -75,7 +75,7 @@ const Site: NextPage = (props: any) => {
 									>
 										<Image
 											src={`${config.static.url}/ext/${snapshot.id}/screenshot.png`}
-											alt='Preview of archived webpage'
+											alt='Preview of snapshotted webpage'
 											layout='fill'
 											objectFit='cover'
 											objectPosition='top center'

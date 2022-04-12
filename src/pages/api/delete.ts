@@ -23,7 +23,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 			},
 		})
 		.then(() => {
-			const folder = join(process.cwd(), 'archive', req.body.uuid);
+			const folder = join(process.cwd(), 'snapshots', req.body.uuid);
 			if (existsSync(folder)) rmSync(folder, { recursive: true });
 
 			res.status(200).json({

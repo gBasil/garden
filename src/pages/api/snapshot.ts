@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import { withValidation } from 'next-validations';
 import axios from 'axios';
-import archiveSite from '../../helpers/archiveSite';
+import snapshotSite from '../../helpers/snapshotSite';
 
 const schema = z.object({
 	title: z.string().max(100),
@@ -22,7 +22,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 		.then((response) => {
 			const url = response.request.res.responseUrl;
 
-			archiveSite(url, req.body.title, req.body.entireSite, res);
+			snapshotSite(url, req.body.title, req.body.entireSite, res);
 		})
 		.catch(() => {
 			if (!res.headersSent)
