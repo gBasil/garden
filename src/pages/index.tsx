@@ -1,4 +1,4 @@
-import { Button, Grid, Spacer } from '@geist-ui/core';
+import { Button, Grid, Spacer, Text } from '@geist-ui/core';
 import { Snapshot } from '@prisma/client';
 import type { GetServerSideProps, NextPage } from 'next';
 import { deserialize, serialize } from 'superjson';
@@ -6,14 +6,23 @@ import { SuperJSONResult } from 'superjson/dist/types';
 import SnapshotCard from '../components/SnapshotCard';
 import Link from '../components/Link';
 import Page from '../components/Page';
-import { prisma } from '../helpers/db';
+import { prisma } from '../helpers/server/db';
+import { useQuery } from 'react-query';
+import getSnapshots from '../helpers/client/getSnapshots';
 
 type Props = {
 	snapshots: SuperJSONResult;
 };
 
 const Home: NextPage<Props> = (props) => {
-	const snapshots: Snapshot[] = deserialize(props.snapshots);
+	const deserialized: Snapshot[] = deserialize(props.snapshots);
+	const { data: snapshots, isSuccess } = useQuery<Snapshot[]>(
+		['snapshots'],
+		getSnapshots,
+		{
+			initialData: deserialized,
+		}
+	);
 
 	return (
 		<Page quote title='Home'>
@@ -25,11 +34,15 @@ const Home: NextPage<Props> = (props) => {
 
 			<Spacer />
 
-			<Grid.Container gap={3}>
-				{snapshots.map((snapshot) => (
-					<SnapshotCard snapshot={snapshot} key={snapshot.id} />
-				))}
-			</Grid.Container>
+			{isSuccess ? (
+				<Grid.Container gap={3}>
+					{snapshots.map((snapshot) => (
+						<SnapshotCard snapshot={snapshot} key={snapshot.id} />
+					))}
+				</Grid.Container>
+			) : (
+				<Text type='error'>Error fetching data, try refreshing the page.</Text>
+			)}
 		</Page>
 	);
 };
@@ -40,8 +53,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 			ready: true,
 		},
 		orderBy: {
-			createdAt: 'desc'
-		}
+			createdAt: 'desc',
+		},
 	});
 
 	return {

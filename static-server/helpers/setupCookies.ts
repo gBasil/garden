@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { prisma } from '../../src/helpers/db';
+import { prisma } from '../../src/helpers/server/db';
 
 const setupCookies = async (req: Request, res: Response) => {
 	// TODO: Add check to prevent redundant database lookups

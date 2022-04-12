@@ -6,7 +6,7 @@ import { prisma } from './db';
 import getFolderSize from 'get-folder-size';
 import recursive from 'recursive-readdir';
 import captureWebsite from 'capture-website';
-import config from './config';
+import config from '../config';
 
 const snapshotSite = async (
 	url: string,

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { existsSync } from 'fs';
 import { join } from 'path';
-import { prisma } from '../../src/helpers/db';
+import { prisma } from '../../src/helpers/server/db';
 
 // Cache the subdirectories from lookups
 const dirCache: any = {};

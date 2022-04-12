@@ -17,7 +17,7 @@ import Image from 'next/image';
 import Breadcrumb from '../../components/Breadcrumb';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
-import { prisma } from '../../helpers/db';
+import { prisma } from '../../helpers/server/db';
 import { deserialize, serialize } from 'superjson';
 import { Snapshot } from '@prisma/client';
 import prettyBytes from 'pretty-bytes';
@@ -27,15 +27,14 @@ import { useRouter } from 'next/router';
 import { ExternalLink } from '@geist-ui/icons';
 import { useQuery } from 'react-query';
 import { queryClient } from '../_app';
+import { SuperJSONResult } from 'superjson/dist/types';
+import getSnapshot from '../../helpers/client/getSnapshot';
 
-const getSnapshot = async (id: string): Promise<Snapshot> => {
-	const response = await axios.post('/api/data/snapshot', { uuid: id });
-	if (!response) throw new Error('Failed to fetch snapshot');
-
-	return deserialize(response.data) as Snapshot;
+type Props = {
+	snapshot: SuperJSONResult;
 };
 
-const Site: NextPage = (props: any) => {
+const Site: NextPage<Props> = (props) => {
 	const deserialized: Snapshot = deserialize(props.snapshot);
 	const { data: snapshot, isSuccess } = useQuery<Snapshot>(
 		['snapshot', deserialized.id],
@@ -67,7 +66,7 @@ const Site: NextPage = (props: any) => {
 					delay: 4000,
 				});
 
-				queryClient.invalidateQueries(['snapshot']);
+				queryClient.invalidateQueries(['snapshots']);
 				router.push('/');
 			})
 			.catch(({ response }) => {
@@ -79,7 +78,6 @@ const Site: NextPage = (props: any) => {
 					});
 			});
 	};
-
 
 	return (
 		<Page
@@ -236,7 +234,7 @@ const Site: NextPage = (props: any) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
 	const snapshot = await prisma.snapshot.findFirst({
 		where: {
 			id: context.query.slug as string,

@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import { withValidation } from 'next-validations';
 import axios from 'axios';
-import snapshotSite from '../../../helpers/snapshotSite';
+import snapshotSite from '../../../helpers/server/snapshotSite';
 
 const schema = z.object({
 	title: z.string().max(100),

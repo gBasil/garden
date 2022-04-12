@@ -6,7 +6,7 @@ import Page from '../components/Page';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import FormInput from '../components/FormInput';
-import handleFormError from '../helpers/handleFormError';
+import handleFormError from '../helpers/client/handleFormError';
 import FormCheckbox from '../components/FormCheckbox';
 import { z } from 'zod';
 import { useRouter } from 'next/router';

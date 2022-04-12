@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import { withValidation } from 'next-validations';
-import { prisma } from '../../../helpers/db';
+import { prisma } from '../../../helpers/server/db';
 import { join } from 'path';
 import { existsSync, rmSync } from 'fs';
 
@@ -30,7 +30,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 				message: 'Deleted successfully!',
 			});
 		})
-		.catch((err) =>
+		.catch(() =>
 			res.status(500).json({
 				message: 'An unknown error ocurred',
 			})

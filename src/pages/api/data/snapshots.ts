@@ -1,24 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { z } from 'zod';
-import { withValidation } from 'next-validations';
 import { prisma } from '../../../helpers/server/db';
 import { serialize } from 'superjson';
 
-const schema = z.object({
-	uuid: z.string().uuid(),
-});
-
-const validate = withValidation({
-	schema,
-	type: 'Zod',
-	mode: 'body',
-});
-
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
 	prisma.snapshot
-		.findFirst({
+		.findMany({
 			where: {
-				id: req.body.uuid,
+				ready: true,
 			},
 		})
 		.then((data) => {
@@ -26,10 +14,10 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 
 			res.status(200).json(serialize(data));
 		})
-		.catch(() =>
+		.catch(() => 
 			res.status(500).json({
 				message: 'An error ocurred fetching snapshot status',
 			})
 		);
 };
-export default validate(handler);
+export default handler;
