@@ -23,6 +23,11 @@ const Changelog: NextPage = () => (
 				<Release.Image src='0.3.0.png' />
 
 				<p>Now featuring a list of the more notable changes made to Garden!</p>
+
+				<Text h3>Fixes & Improvements</Text>
+				<ul>
+					<li>📄 Added a license</li>
+				</ul>
 			</Release>
 			<Release v='0.2.0' date='2022-04-12T04:02:17.268Z'>
 				<Text h3>Fixes & Improvements</Text>
