@@ -25,6 +25,8 @@ const Changelog: NextPage = () => (
 
 				<Text h3>Fixes & Improvements</Text>
 				<ul>
+					<li>🥅 Added custom 404 page</li>
+					<li>💬 Added text on home page when no snapshots exist</li>
 					<li>📄 Added a license</li>
 				</ul>
 			</Release>

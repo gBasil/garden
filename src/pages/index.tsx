@@ -40,7 +40,7 @@ const Home: NextPage<Props> = (props) => {
 						<SnapshotCard snapshot={snapshot} key={snapshot.id} />
 					))}
 				</Grid.Container>
-				: <Text className='text-center' type='secondary'>There's nothing here, try snapshotting a website.</Text>
+				: <Text className='text-center' type='secondary'>There&apos;s nothing here, try snapshotting a website.</Text>
 			) : (
 				<Text type='error'>Error fetching data, try refreshing the page.</Text>
 			)}
