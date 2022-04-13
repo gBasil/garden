@@ -1,6 +1,5 @@
 import { Breadcrumbs, Text } from '@geist-ui/core';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import Breadcrumb from '../components/Breadcrumb';
 import Page from '../components/Page';
 import Release from '../components/Release';

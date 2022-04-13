@@ -1,5 +1,5 @@
 import { Grid, Text } from '@geist-ui/core';
-import Image from 'next/image';
+import NextImage from 'next/image';
 
 type ReleaseProps = {
 	v: string;
@@ -40,14 +40,17 @@ const Release = ({ v, children, date, hidden }: ReleaseProps) =>
 		</>
 	);
 
-Release.Container = ({ children }: ReleaseContainerProps) => (
+const Container = ({ children }: ReleaseContainerProps) => (
 	<Grid.Container gap={1}>{children}</Grid.Container>
 );
 
-Release.Image = ({ src }: ReleaseImageProps) => (
+const Image = ({ src }: ReleaseImageProps) => (
 	<div className='relative aspect-video overflow-clip rounded-md'>
-		<Image src={`/img/changelog/${src}`} layout='fill' quality={100} />
+		<NextImage src={`/img/changelog/${src}`} layout='fill' quality={100} alt='' />
 	</div>
 );
+
+Release.Container = Container;
+Release.Image = Image;
 
 export default Release;
