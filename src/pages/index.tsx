@@ -35,11 +35,12 @@ const Home: NextPage<Props> = (props) => {
 			<Spacer />
 
 			{isSuccess ? (
-				<Grid.Container gap={3}>
+				snapshots.length ? <Grid.Container gap={3}>
 					{snapshots.map((snapshot) => (
 						<SnapshotCard snapshot={snapshot} key={snapshot.id} />
 					))}
 				</Grid.Container>
+				: <Text className='text-center' type='secondary'>There's nothing here, try snapshotting a website.</Text>
 			) : (
 				<Text type='error'>Error fetching data, try refreshing the page.</Text>
 			)}
