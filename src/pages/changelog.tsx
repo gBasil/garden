@@ -16,7 +16,7 @@ const Changelog: NextPage = () => (
 	>
 		{/* // TODO: Migrate to GitHub releases, or create a better system for a changelog */}
 		<Release.Container>
-			<Release v='0.3.0' date='2022-04-13T04:02:17.268Z' hidden>
+			<Release v='0.3.0' date='2022-04-13T04:02:17.268Z'>
 				<Text h3>Changelog</Text>
 
 				<Release.Image src='0.3.0.png' />
@@ -29,6 +29,7 @@ const Changelog: NextPage = () => (
 					<li>💬 Added text on home page when no snapshots exist</li>
 					<li>📄 Added a license</li>
 					<li>🐛 Fixed snapshot ordering on the home page</li>
+					<li>🚸 Added relative time to creation date (hover for full date)</li>
 				</ul>
 			</Release>
 			<Release v='0.2.0' date='2022-04-12T04:02:17.268Z'>

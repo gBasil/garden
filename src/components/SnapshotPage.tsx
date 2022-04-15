@@ -17,6 +17,7 @@ import prettyBytes from 'pretty-bytes';
 import deleteSnapshot from '../helpers/client/deleteSnapshot';
 import config from '../helpers/config';
 import Link from './Link';
+import TimeAgo from './TimeAgo';
 
 const SnapshotPage = ({ snapshot }: { snapshot: Snapshot }) => {
 	const { setVisible, bindings } = useModal();
@@ -99,12 +100,8 @@ const SnapshotPage = ({ snapshot }: { snapshot: Snapshot }) => {
 							<Grid xs={12}>
 								<Description
 									title='Created'
-									content={snapshot.createdAt.toLocaleString(
-										'en-US',
-										{
-											timeStyle: 'short',
-											dateStyle: 'long',
-										}
+									content={(
+										<TimeAgo date={snapshot.createdAt} />
 									)}
 								/>
 							</Grid>
