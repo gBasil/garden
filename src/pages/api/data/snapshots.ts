@@ -8,13 +8,16 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 			where: {
 				ready: true,
 			},
+			orderBy: {
+				createdAt: 'desc',
+			},
 		})
 		.then((data) => {
 			if (!data) throw new Error();
 
 			res.status(200).json(serialize(data));
 		})
-		.catch(() => 
+		.catch(() =>
 			res.status(500).json({
 				message: 'An error ocurred fetching snapshot status',
 			})

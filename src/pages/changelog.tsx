@@ -28,6 +28,7 @@ const Changelog: NextPage = () => (
 					<li>🥅 Added custom 404 page</li>
 					<li>💬 Added text on home page when no snapshots exist</li>
 					<li>📄 Added a license</li>
+					<li>🐛 Fixed snapshot ordering on the home page</li>
 				</ul>
 			</Release>
 			<Release v='0.2.0' date='2022-04-12T04:02:17.268Z'>
